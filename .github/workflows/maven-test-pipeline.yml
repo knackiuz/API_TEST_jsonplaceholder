@@ -34,7 +34,7 @@ jobs:
       - name: Run Maven Tests
         # Execute the tests using the Maven 'test' goal
         # Pass the selenide.headless property to ensure tests run without a GUI
-        run: mvn test
+        run: mvn test -Pdev
 
       - name: Final Status Check (Success)
         # This step only runs if the previous 'mvn test' step was successful
