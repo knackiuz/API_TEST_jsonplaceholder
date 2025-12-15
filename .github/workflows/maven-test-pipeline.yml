@@ -1,0 +1,47 @@
+# The name of your pipeline, which will appear in GitHub Actions
+name: Java Maven Tests CI
+
+# When the pipeline should run
+on:
+  push:
+    # Run on commits to the main branch
+    branches: [ master, main ]
+  pull_request:
+    # Run on creation of a Pull Request targeting the main branch
+    branches: [ master, main ]
+
+# Define the jobs
+jobs:
+  build:
+    # Run on the standard Ubuntu virtual machine
+    runs-on: ubuntu-latest
+
+    # Steps for execution
+    steps:
+      - name: Checkout Repository
+        # Action to check out the repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        # Action to set up the Java environment
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          # Enable Maven caching for faster dependency downloads
+          cache: maven
+
+      - name: Run Maven Tests
+        # Execute the tests using the Maven 'test' goal
+        # Pass the selenide.headless property to ensure tests run without a GUI
+        run: mvn test
+
+      - name: Final Status Check (Success)
+        # This step only runs if the previous 'mvn test' step was successful
+        if: success()
+        run: echo "Tests passed successfully! Continuous Integration is good."
+
+      - name: Report Failure
+        # This step only runs if the tests failed
+        if: failure()
+        run: echo "Tests failed! Check the test results in the workflow logs."
