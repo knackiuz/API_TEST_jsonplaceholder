@@ -8,8 +8,8 @@ import org.slf4j.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class ApiTestLombok {
-    private static final Logger log = LoggerFactory.getLogger(ApiTestLombok.class);
+public class ApiLombokTest {
+    private static final Logger log = LoggerFactory.getLogger(ApiLombokTest.class);
 
     //Test: create and delete user
     @Test

@@ -11,7 +11,7 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **Maven** - Build tool and dependency management.
 * **GitHub Actions** - CI pipeline integration.
 * ** **
-* **ApiTestLombok:**
+* **ApiLombokTest:**
 * **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
 
 ---

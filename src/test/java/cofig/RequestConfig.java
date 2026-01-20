@@ -4,7 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.slf4j.*;
-import tests.ApiTestLombok;
+import tests.ApiLombokTest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.Properties;
 public class RequestConfig {
     private static final String TOKEN = "d80dff7a51893caef056229334296ff3e646a5e3b8674ab80205a421b63c3641";
     private static final String environmentFileName = System.getProperty("environment.file", "sitnext.properties");
-    private static final Logger log = LoggerFactory.getLogger(ApiTestLombok.class);
+    private static final Logger log = LoggerFactory.getLogger(ApiLombokTest.class);
 
     public static RequestSpecification getCommonSpec(){
         return new RequestSpecBuilder().setBaseUri(getEnvironmentName())
