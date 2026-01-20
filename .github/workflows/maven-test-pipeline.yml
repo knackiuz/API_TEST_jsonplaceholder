@@ -1,16 +1,17 @@
-# The name of your pipeline, which will appear in GitHub Actions
+# Name of pipeline in GitHub Actions
 name: Java Maven Tests CI
 
-# When the pipeline should run
 on:
+  # Run on push
   push:
-    # Run on commits to the main branch
+    # Run for branches
     branches: [ master, main ]
+  # Run on pull request
   pull_request:
-    # Run on creation of a Pull Request targeting the main branch
+    # For branches
     branches: [ master, main ]
 
-# Define the jobs
+# Jobs definition
 jobs:
   build:
     # Run on the standard Ubuntu virtual machine
