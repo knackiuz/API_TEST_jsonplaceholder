@@ -15,7 +15,8 @@ on:
 jobs:
   build:
     # Run on the standard Ubuntu virtual machine
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     # Steps for execution
     steps:
