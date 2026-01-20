@@ -18,6 +18,7 @@ public class RequestConfig {
     public static RequestSpecification getCommonSpec(){
         return new RequestSpecBuilder().setBaseUri(getEnvironmentName())
                 .addHeader("Authorization", "Bearer " + TOKEN)
+                .addHeader("User-Agent", "PostmanRuntime/7.32.3")
                 .setContentType(ContentType.JSON).build();
     }
 
