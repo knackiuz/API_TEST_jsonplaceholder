@@ -27,6 +27,7 @@ public class ApiLombokTest {
                 .when()
                     .post("/users")
                 .then()
+                    .log().ifValidationFails()
                     .statusCode(201)
                     .body("name", equalTo(user.getName()))
                     .body("id", notNullValue())
