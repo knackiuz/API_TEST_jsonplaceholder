@@ -3,13 +3,16 @@
 This repository contains automated API tests for the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. The project is built using **Java 17**, **Rest Assured**, and **JUnit 5**, following best practices like POJO modeling and environment-specific configurations.
 
 ## 🛠 Tech Stack
-
+* **ApiTest:**
 * **Java 17** (Amazon Corretto / Temurin)
 * **Rest Assured 5.4.0** - For RESTful API testing.
 * **JUnit 5 (Jupiter)** - Test engine and assertions.
 * **Jackson Databind** - For JSON serialization and deserialization.
 * **Maven** - Build tool and dependency management.
 * **GitHub Actions** - CI pipeline integration.
+* ** **
+* **ApiTestLombok:**
+* **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
 
 ---
 
