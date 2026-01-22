@@ -23,7 +23,7 @@ public class WiremockTest extends BaseTest {
         stubFor(post(urlEqualTo("/users"))
                 .willReturn(aResponse()
                         .withStatus(201)
-                        .withHeader("Content-Type", "appication/json")
+                        .withHeader("Content-Type", "application/json")
                         .withBody("{\"id\": 999, \"name\": \"NewUserMock\", \"status\":\"active\" }")
                 ));
         given()
