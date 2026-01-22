@@ -1,6 +1,6 @@
 package tests;
 
-import cofig.RequestConfig;
+import config.RequestConfig;
 import models.User;
 import org.junit.jupiter.api.Test;
 import org.slf4j.*;
@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class ApiLombokTest {
     private static final Logger log = LoggerFactory.getLogger(ApiLombokTest.class);
 
-    //Test: create and delete user
+    //Positive test: create and delete user
     @Test
     public void createAndDeleteUser(){
         User user = User.builder()

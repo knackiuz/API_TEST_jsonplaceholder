@@ -14,6 +14,8 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **ApiLombokTest:**
 * **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
 
+### Infrastructure Note: Windows Runner
+Initially, the tests encountered `403 Forbidden` errors on `ubuntu-latest` runners due to Cloudflare anti-bot protection (Managed Challenges).
 ---
 
 ## 📂 Project Structure
@@ -21,6 +23,7 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 ```text
 ├── .github/workflows/      # CI/CD pipeline configuration
 ├── src/test/java/
+│   ├── config/             # Configuration for request
 │   ├── models/             # Plain Old Java Objects (POJOs) for JSON mapping
 │   └── tests/              # Test suites using Rest Assured
 ├── src/test/resources/     # Configuration files (properties)
