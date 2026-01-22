@@ -13,6 +13,11 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * ** **
 * **ApiLombokTest:**
 * **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
+* **Using Soft Assertion** Approach for failed assertion
+* ** **
+* **WiremockTest:**
+* **Using WireMock**  For positive and negative tests
+ 
 
 ### Infrastructure Note: Windows Runner
 Initially, the tests encountered `403 Forbidden` errors on `ubuntu-latest` runners due to Cloudflare anti-bot protection (Managed Challenges).
