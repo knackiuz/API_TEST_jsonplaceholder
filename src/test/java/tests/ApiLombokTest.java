@@ -7,6 +7,9 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.*;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
@@ -44,6 +47,39 @@ public class ApiLombokTest {
                 .then()
                         .statusCode(204)
                         .log().all();
+    }
+
+    @ParameterizedTest(name = "Run {index}: creating user {0}") //Using JUnit internal variables: 'index' - run nimber and '{0}' - argument by index
+    @MethodSource("test_data.UserTestData#validUsers")
+    //Using parameters - used test data from separate class for the test
+    public void createAndDeleteNewUserParameterizedTest(User user){
+        User response = given()
+                .spec(RequestConfig
+                        .getCommonSpec())
+                .body(user)
+                .when()
+                .post("/users")
+                .then()
+                .statusCode(201)
+                .body("name", equalTo(user.getName()))
+                .body("id", notNullValue())
+                .extract().as(User.class);
+
+        //System.out.println(response.toString());
+        log.info("Created user with ID: {}", response.getId());
+        log.debug("Full response: {}", response);
+
+
+        //delete the user
+        given()
+                .spec(RequestConfig.getCommonSpec())
+                .when()
+                .delete("/users/" + response.getId())
+                .then()
+                .statusCode(204)
+                .log().all();
+
+        log.info("Successfully deleted user with ID: {}", response.getId());
     }
 
     //Negative test: try to create new user with wrong type of property and using Soft Assertion for failures

@@ -14,6 +14,7 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **ApiLombokTest:**
 * **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
 * **Using Soft Assertion** Approach for failed assertion
+* **Using parameters as separate class and method for JUnit ParameterizedTest  
 * ** **
 * **WiremockTest:**
 * **Using WireMock**  For positive and negative tests
@@ -28,9 +29,12 @@ Initially, the tests encountered `403 Forbidden` errors on `ubuntu-latest` runne
 ```text
 ├── .github/workflows/      # CI/CD pipeline configuration
 ├── src/test/java/
+│   ├── base/               # Setup for WireMock
 │   ├── config/             # Configuration for request
 │   ├── models/             # Plain Old Java Objects (POJOs) for JSON mapping
-│   └── tests/              # Test suites using Rest Assured
+│   ├── test_data/          # Test data for ParameterizedTest
+│   ├── tests/              # Test suites using Rest Assured
+│   └── resources/          # Propetries for environment
 ├── src/test/resources/     # Configuration files (properties)
 ├── pom.xml                 # Maven project configuration and profiles
 └── README.md
