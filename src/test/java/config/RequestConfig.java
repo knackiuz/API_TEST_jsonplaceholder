@@ -26,7 +26,8 @@ public class RequestConfig {
         //Read properties file
         String environmentName = null;
         Properties properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("target/test-classes/" + environmentFileName)) {
+        //try (FileInputStream fileInputStream = new FileInputStream("target/test-classes/" + environmentFileName)) {
+        try (var fileInputStream = RequestConfig.class.getClassLoader().getResourceAsStream(environmentFileName)) {
             properties.load(fileInputStream);
 
             //Set BASE_URL using the value from properties file
