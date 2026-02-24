@@ -18,8 +18,14 @@ public class RequestConfig {
     public static RequestSpecification getCommonSpec(){
         return new RequestSpecBuilder().setBaseUri(getEnvironmentName())
                 .addHeader("Authorization", "Bearer " + TOKEN)
-                .addHeader("User-Agent", "PostmanRuntime/7.32.3")
-                .setContentType(ContentType.JSON).build();
+                //.addHeader("User-Agent", "PostmanRuntime/7.32.3")
+                .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36")
+                .addHeader("Accept", "application/json, text/plain, */*")
+                .addHeader("Accept-Language", "en-US,en;q=0.9")
+                .addHeader("Cache-Control", "no-cache")
+                .addHeader("Pragma", "no-cache")
+                .setContentType(ContentType.JSON)
+                .build();
     }
 
     static String getEnvironmentName(){
