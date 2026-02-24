@@ -15,7 +15,6 @@ on:
 jobs:
   build:
     # Run on the standard Ubuntu virtual machine
-    #runs-on: ubuntu-latest
     #runs-on: windows-latest
     runs-on: ubuntu-latest
 
@@ -43,10 +42,7 @@ jobs:
         run: docker build -t rest-assured-tests .
 
       - name: Run Rest Assured Tests
-        run:
-          docker run --rm \
-          -e BASE_URL="https://api.example.com" \
-          rest-assured-tests mvn test -Pdev
+        run: docker run --rm -e BASE_URL="https://api.example.com" rest-assured-tests mvn test -Pdev
 
       - name: Final Status Check (Success)
         # This step only runs if the previous 'mvn test' step was successful
