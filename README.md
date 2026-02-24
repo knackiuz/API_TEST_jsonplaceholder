@@ -20,8 +20,11 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **Using WireMock**  For positive and negative tests
  
 
-### Infrastructure Note: Windows Runner
-Initially, the tests encountered `403 Forbidden` errors on `ubuntu-latest` runners due to Cloudflare anti-bot protection (Managed Challenges).
+### Bypassing Cloudflare (403 Forbidden)
+Standard GitHub ubuntu-latest runners are often blocked by GoRest's Cloudflare protection. This project implements a Cloudflare WARP tunnel within the CI pipeline to:
+1. Mask the runner's IP with a trusted Cloudflare exit node.
+2. Bypass Managed Challenges that typically block Rest Assured clients.
+
 ---
 
 ## 📂 Project Structure
@@ -36,5 +39,6 @@ Initially, the tests encountered `403 Forbidden` errors on `ubuntu-latest` runne
 │   ├── tests/              # Test suites using Rest Assured
 │   └── resources/          # Propetries for environment
 ├── src/test/resources/     # Configuration files (properties)
+├── Dockerfile              # Optimized Maven & JDK 17 image configuration
 ├── pom.xml                 # Maven project configuration and profiles
 └── README.md

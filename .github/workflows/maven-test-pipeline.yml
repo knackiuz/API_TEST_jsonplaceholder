@@ -38,17 +38,23 @@ jobs:
         # Pass the selenide.headless property to ensure tests run without a GUI
         #run: mvn test -Pdev
 
+      # Build docker image first
       - name: Build Docker Image
         run: docker build -t rest-assured-tests .
 
+      # Connect to Cloudflare WARP to bypass 403 Forbidden errors from GoRest
+      # This changes the runner's IP to a trusted Cloudflare exit node
       - name: Install and Connect Cloudflare WARP
         uses: fscarmen/warp-on-actions@v1.1
 
+      # Verify the network status and ensure WARP is active (warp=on)
       - name: Check IP and Cloudflare status
         run: |
           curl -s https://www.cloudflare.com/cdn-cgi/trace
           curl -s https://ifconfig.me
 
+      # Execute tests inside the container
+      # We use --network host to share the runner's WARP tunnel with the container
       - name: Run Rest Assured Tests
         #run: docker run --rm -e BASE_URL="https://api.example.com" rest-assured-tests mvn clean test -Pdev
         run: |          
