@@ -24,6 +24,9 @@ public class RequestConfig {
                 .addHeader("Accept-Language", "en-US,en;q=0.9")
                 .addHeader("Cache-Control", "no-cache")
                 .addHeader("Pragma", "no-cache")
+                .addHeader("sec-ch-ua", "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"")
+                .addHeader("sec-ch-ua-mobile", "?0")
+                .addHeader("sec-ch-ua-platform", "\"Windows\"")
                 .setContentType(ContentType.JSON)
                 .build();
     }
