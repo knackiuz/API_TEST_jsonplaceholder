@@ -1,5 +1,5 @@
 # Name of pipeline in GitHub Actions
-name: Java Maven Tests CI
+name: Java Maven Tests CI (Docker flow)
 
 on:
   # Run on push
@@ -24,19 +24,28 @@ jobs:
         # Action to check out the repository code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      #- name: Set up Java 17
         # Action to set up the Java environment
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+        #uses: actions/setup-java@v4
+        #with:
+          #java-version: '17'
+          #distribution: 'temurin'
           # Enable Maven caching for faster dependency downloads
-          cache: maven
+          #cache: maven
 
-      - name: Run Maven Tests
+      #- name: Run Maven Tests
         # Execute the tests using the Maven 'test' goal
         # Pass the selenide.headless property to ensure tests run without a GUI
-        run: mvn test -Pdev
+        #run: mvn test -Pdev
+
+      - name: Build Docker Image
+        run: docker build -t rest-assured-tests .
+
+      - name: Run Rest Assured Tests
+        run:
+          docker run --rm \
+          -e BASE_URL="https://api.example.com" \
+          rest-assured-tests mvn test -Pdev
 
       - name: Final Status Check (Success)
         # This step only runs if the previous 'mvn test' step was successful
