@@ -38,6 +38,9 @@ jobs:
         # Pass the selenide.headless property to ensure tests run without a GUI
         #run: mvn test -Pdev
 
+      - name: Build Docker Image
+        run: docker build -t rest-assured-tests .
+
       - name: Install and Connect Cloudflare WARP
         uses: fscarmen/warp-on-actions@v1.1
 
@@ -45,9 +48,6 @@ jobs:
         run: |
           curl -s https://www.cloudflare.com/cdn-cgi/trace
           curl -s https://ifconfig.me
-
-      - name: Build Docker Image
-        run: docker build -t rest-assured-tests .
 
       - name: Run Rest Assured Tests
         #run: docker run --rm -e BASE_URL="https://api.example.com" rest-assured-tests mvn clean test -Pdev
