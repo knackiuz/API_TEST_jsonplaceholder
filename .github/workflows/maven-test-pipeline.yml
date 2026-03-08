@@ -71,3 +71,20 @@ jobs:
         # This step only runs if the tests failed
         if: failure()
         run: echo "Tests failed! Check the test results in the workflow logs."
+
+      - name: Setup Allure
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: all-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history # The action above puts the final report here
