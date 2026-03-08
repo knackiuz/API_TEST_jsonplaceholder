@@ -60,6 +60,7 @@ jobs:
         run: |          
           docker run --rm \
           --network host \
+          -v ${{ github.workspace }}/allure-results:/app/target/allure-results \
           rest-assured-tests mvn clean test -Pdev
 
       - name: Final Status Check (Success)
@@ -77,7 +78,7 @@ jobs:
         if: always()
         id: allure-report
         with:
-          allure_results: all-results
+          allure_results: allure-results
           allure_history: allure-history
           keep_reports: 20
 
