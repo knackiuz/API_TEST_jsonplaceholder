@@ -14,16 +14,36 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **ApiLombokTest:**
 * **Using Lombok** - Automatically generates getters, setters, implements the Builder and "Jackson" deserialization
 * **Using Soft Assertion** Approach for failed assertion
-* **Using parameters as separate class and method for JUnit ParameterizedTest  
+* **Using parameters as separate class and method for JUnit ParameterizedTest**  
 * ** **
 * **WiremockTest:**
-* **Using WireMock**  For positive and negative tests
+* **Using WireMock** For positive and negative tests
+* Docker - Containerized execution environment.
+* Allure Report - Advanced test reporting and visualization
  
 
 ### Bypassing Cloudflare (403 Forbidden)
 Standard GitHub ubuntu-latest runners are often blocked by GoRest's Cloudflare protection. This project implements a Cloudflare WARP tunnel within the CI pipeline to:
 1. Mask the runner's IP with a trusted Cloudflare exit node.
 2. Bypass Managed Challenges that typically block Rest Assured clients.
+
+---
+
+### 🐳 Containerization & CI/CD
+To ensure environment consistency and easy scaling, the entire test suite is containerized:
+* Dockerized Execution: Tests run inside a lightweight Maven/JDK 17 container, isolating dependencies from the host machine.
+* Automated Pipeline: GitHub Actions handles the full lifecycle:
+1. Building the Docker image.
+2. Setting up a Cloudflare WARP tunnel.
+3. Running tests inside the container.
+4. Mapping test results to the host for reporting.
+
+### 📊 Test Reporting
+The project uses Allure Report to provide deep insights into test execution:
+* Interactive Dashboard: Visual summary of passed, failed, and broken tests.
+* Step-by-Step Details: Detailed logs for each API request and response.
+* History Tracking: Compare current results with previous runs to identify regressions.
+* GitHub Pages Hosting: Reports are automatically deployed and accessible via the badge at the top of this README.
 
 ---
 
