@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","444","createAndDeleteNewUserParameterizedTest(User) Run 2: creating user User(name=Maria, gender=female, email=maria1773006059888@mail.ru, status=active, id=0)","","Sun Mar 08 21:41:02 UTC 2026","failed","Sun Mar 08 21:41:02 UTC 2026","","tests.ApiLombokTest","tests.ApiLombokTest","createAndDeleteNewUserParameterizedTest"
+"","544","tryCreateAndDeleteUser()","","Sun Mar 08 21:41:03 UTC 2026","passed","Sun Mar 08 21:41:03 UTC 2026","","tests.ApiLombokTest","tests.ApiLombokTest","tryCreateAndDeleteUser"
+"","72","createNewUserWithMock()","","Sun Mar 08 21:41:05 UTC 2026","passed","Sun Mar 08 21:41:05 UTC 2026","","tests.WiremockTest","tests.WiremockTest","createNewUserWithMock"
+"","2321","createAndDeleteNewUserParameterizedTest(User) Run 1: creating user User(name=Alex, gender=male, email=alex1773006059887@mail.com, status=active, id=0)","","Sun Mar 08 21:40:59 UTC 2026","failed","Sun Mar 08 21:41:02 UTC 2026","","tests.ApiLombokTest","tests.ApiLombokTest","createAndDeleteNewUserParameterizedTest"
+"","450","createAndDeleteUser()","","Sun Mar 08 21:41:02 UTC 2026","failed","Sun Mar 08 21:41:03 UTC 2026","","tests.ApiLombokTest","tests.ApiLombokTest","createAndDeleteUser"
+"","580","shouldCreateNewPostUsingPojoSuccessfully()","","Sun Mar 08 21:41:03 UTC 2026","passed","Sun Mar 08 21:41:04 UTC 2026","","tests.ApiTest","tests.ApiTest","shouldCreateNewPostUsingPojoSuccessfully"
+"","360","tryToCreateNewUserWithWrongEmail()","","Sun Mar 08 21:41:04 UTC 2026","passed","Sun Mar 08 21:41:05 UTC 2026","","tests.WiremockTest","tests.WiremockTest","tryToCreateNewUserWithWrongEmail"
