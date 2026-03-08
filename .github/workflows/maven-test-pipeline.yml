@@ -61,7 +61,7 @@ jobs:
           docker run --rm \
           --network host \
           -v ${{ github.workspace }}/allure-results:/app/target/allure-results \
-          rest-assured-tests mvn clean test -Pdev
+          rest-assured-tests mvn test -Pdev
 
       - name: Final Status Check (Success)
         # This step only runs if the previous 'mvn test' step was successful
