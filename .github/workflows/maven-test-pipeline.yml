@@ -17,6 +17,8 @@ jobs:
     # Run on the standard Ubuntu virtual machine
     #runs-on: windows-latest
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     # Steps for execution
     steps:
