@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -12,5 +13,7 @@ public class User {
     private String gender;
     private String email;
     private String status;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int id;
 }

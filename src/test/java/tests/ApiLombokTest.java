@@ -53,17 +53,20 @@ public class ApiLombokTest {
     @MethodSource("test_data.UserTestData#validUsers")
     //Using parameters - used test data from separate class for the test
     public void createAndDeleteNewUserParameterizedTest(User user){
-        User response = given()
-                .spec(RequestConfig
-                        .getCommonSpec())
-                .body(user)
+        User response =
+                given()
+                    .spec(RequestConfig
+                    .getCommonSpec())
+                    .body(user)
+                    .log().all()
                 .when()
-                .post("/users")
+                    .post("/users")
                 .then()
-                .statusCode(201)
-                .body("name", equalTo(user.getName()))
-                .body("id", notNullValue())
-                .extract().as(User.class);
+                    .log().all()
+                    .statusCode(201)
+                    .body("name", equalTo(user.getName()))
+                    .body("id", notNullValue())
+                    .extract().as(User.class);
 
         //System.out.println(response.toString());
         log.info("Created user with ID: {}", response.getId());

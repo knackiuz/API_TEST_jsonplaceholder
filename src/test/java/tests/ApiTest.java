@@ -1,5 +1,6 @@
 package tests;
 
+import models.PostClient;
 import models.PostModel;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -41,12 +42,12 @@ public class ApiTest {
 
     }
 
-    //Test case to verify successful creation of a new post resource using POJO
     @Test
+    @DisplayName("Test case to verify successful creation of a new post resource using POJO")
     void shouldCreateNewPostUsingPojoSuccessfully() {
         //Create the POJO object (PostModel) which will be sent as the request body
         PostModel requestPayLoad = new PostModel(
-                "Test Automation Assigment",
+                "Test Automation Assignment",
                 "Testing API resource creation with Rest Assured and POJO.",
                 101
         );
@@ -69,5 +70,30 @@ public class ApiTest {
 
         //Assert that the userId was also correctly echoed back
         assertEquals(requestPayLoad.getUserId(), responseBody.getUserId(), "Returned userId must match the sent userId");
+    }
+
+    @Test
+    @DisplayName("Test case to verify successful creation of a new post resource using POJO and API Client abstraction")
+    void shouldCreateNewPostUsingPojoAndAPISuccessfully() {
+        // Initialize Client (In real life, do this in @Before)
+        PostClient postClient = new PostClient(BASE_URL);
+
+        // Create POJO
+        PostModel postModel = new PostModel(
+                "Test Automation Assignment",
+                "Testing API resource creation with Rest Assured and POJO.",
+                101);
+
+        // Execute via client (Abstraction)
+        PostModel response = postClient.createPost(postModel);
+
+        //Assert that the server successfully generated an ID
+        assertNotNull(response.getId(), "Generated ID should not be null in the response.");
+
+        //Assert that the title we sent matches the title returned in the response
+        assertEquals(postModel.getTitle(), response.getTitle(), "Returned title must match the sent title.");
+
+        //Assert that the userId was also correctly echoed back
+        assertEquals(postModel.getUserId(), response.getUserId(), "Returned userId must match the sent userId");
     }
 }
