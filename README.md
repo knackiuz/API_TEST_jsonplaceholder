@@ -20,6 +20,12 @@ This repository contains automated API tests for the [JSONPlaceholder](https://j
 * **Using WireMock** For positive and negative tests
 * Docker - Containerized execution environment.
 * Allure Report - Advanced test reporting and visualization
+* **Behavior Driven Development (BDD):**
+  * Cucumber 7 — Integration for business-readable test scenarios.
+  * Gherkin — Syntax for defining test cases in natural language.
+* **Architecture & Patterns:**
+  * Abstraction Layer — Decoupling test logic from HTTP implementation.
+  * API Client Pattern — Centralized service for API interactions.
  
 
 ### Bypassing Cloudflare (403 Forbidden)
@@ -47,6 +53,25 @@ The project uses Allure Report to provide deep insights into test execution:
 
 ---
 
+### 🏗 Architecture & Design Patterns
+To ensure the framework is scalable and easy to maintain, I implemented several abstraction layers:
+* API Client Abstraction: Instead of writing RestAssured.given() in every test, all HTTP logic is encapsulated in a dedicated PostClient. This follows the Single Responsibility Principle.
+* Data Modeling (POJO): Used Lombok to create clean data models. This abstracts away the complexity of JSON serialization/deserialization.
+* Step Definition Layer: In Cucumber, the "How" (Java code) is separated from the "What" (Gherkin steps). This allows non-technical stakeholders to understand the test coverage.
+* Configuration Abstraction: Environment-specific data (Base URL, timeouts) is moved to .properties files, managed by a centralized RequestConfig class.
+
+---
+
+### 🥒 BDD Approach
+The project uses Cucumber to bridge the gap between technical implementation and business requirements.
+
+File description:
+* posts.feature - Gherkin Scenarios: Defines high-level business logic and test cases
+* PostSteps - Step Definitions (The "Glue"): Bridges the gap between Gherkin steps and Java implementation, handling data preparation and assertions.
+* CucumberTest - Test Runner Suite: Configured with the JUnit 5 Platform, it defines the Glue path and Feature location, serving as the main entry point for BDD execution.
+
+---
+
 ## 📂 Project Structure
 
 ```text
@@ -55,10 +80,12 @@ The project uses Allure Report to provide deep insights into test execution:
 │   ├── base/               # Setup for WireMock
 │   ├── config/             # Configuration for request
 │   ├── models/             # Plain Old Java Objects (POJOs) for JSON mapping
+│   ├── stepdefs/           # Cucumber step definitions (The "Glue")
 │   ├── test_data/          # Test data for ParameterizedTest
 │   ├── tests/              # Test suites using Rest Assured
 │   └── resources/          # Propetries for environment
 ├── src/test/resources/     # Configuration files (properties)
+│   ├── features/           # Gherkin .feature files
 ├── Dockerfile              # Optimized Maven & JDK 17 image configuration
 ├── pom.xml                 # Maven project configuration and profiles
 └── README.md
